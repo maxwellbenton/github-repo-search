@@ -1,17 +1,21 @@
-const SearchForm = ({getRepos}) => {
+const SearchForm = ({setData, setUser}) => {
 
   function handleSubmit(event) {
     event.preventDefault()
-    getRepos(event.target.username.value)
+    setData({
+      userInfo: {},
+      repositories: [],
+      endCursor: null
+    })
+    setUser(event.target.username.value)
     event.target.reset()
   }
 
   return (
-    
     <form onSubmit={handleSubmit}>
       <input name="username" type="text" placeholder="Enter GitHub username"></input>
       <input type="submit"></input>
-    </form>    
+    </form>
   )
 }
 
