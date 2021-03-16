@@ -1,0 +1,11 @@
+.repositoryCard {
+  width: 90%;
+  min-height: 10em;
+  box-shadow: 5px 5px 5px #aaa;
+  margin: auto;
+}
+
+.repoTitle {
+  text-align: left;
+  font-size: 200%;
+}
