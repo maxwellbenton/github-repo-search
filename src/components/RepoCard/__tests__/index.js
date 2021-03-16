@@ -7,7 +7,6 @@ test('renders RepoCard', async () => {
     description: "A simple, general normalizer function for converting JSON nested data to relational data objects.",
     forkCount: 0,
     id: "MDEwOlJlcG9zaXRvcnkxMTg2OTk1MjI=",
-    isFork: false,
     isPrivate: false,
     issues: {nodes: Array(0)},
     languages: {nodes: Array(2)},
@@ -18,7 +17,7 @@ test('renders RepoCard', async () => {
 
   const title = await screen.findByText("universal-normalizer")
   const description = await screen.findByText('A simple, general normalizer function for converting JSON nested data to relational data objects.')
-  
+
   expect(title).toBeInTheDocument();
   expect(description).toBeInTheDocument();
 });
