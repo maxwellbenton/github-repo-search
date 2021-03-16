@@ -1,40 +1,23 @@
 import { createContext, useState,  useEffect } from "react";
-import  { idbKeyval } from '../indexDB';
 import { repoQuery } from '../graphql/queries'; 
 import { GRAPHQL_DOMAIN } from "../constants";
 const { Provider, Consumer } = createContext();
 
 const ConfigProvider = (props) => {
   const [data, setData] = useState({
-    user: '',
     userInfo: {},
-    repositories: []
+    repositories: [],
+    endCursor: null
   })
   const [loading, setLoading] = useState(false)
-
   const [user, setUser] = useState(null)
-  const [endCursor, setEndCursor] = useState(null)
-  const [repoCount, setRepoCount] = useState(0)
-  const [repositories, setRepositories] = useState([])
-  const [loadingRepos, setLoadingRepos] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
 
-  // useEffect(async () => {
-  //   let storedData = await idbKeyval.get('data')
-  //   if (!storedData) {
-  //     await idbKeyval.set('data', data)
-  //   } else {
-  //     setData({ data: storedData })
-  //   }
-  // }, [])
+  const toggleDarkMode = () => {
+    setDarkMode(preState => !preState)
+  }
 
-  // useEffect(async () => {
-  //   let storedData = await idbKeyval.get('data')
-  //   if (JSON.stringify(storedData) !== JSON.stringify(data)) {
-  //     await idbKeyval.set('data', data)
-  //   }
-  // }, [data])
-
-  const getRepos = async (user, endCursor = null) => {
+  const getRepos = async () => {
     
     setLoading(true)
     const response = await fetch(GRAPHQL_DOMAIN, {
@@ -44,18 +27,28 @@ const ConfigProvider = (props) => {
           "Authorization": `bearer ${process.env.REACT_APP_GITHUB_PERSONAL_TOKEN}`
         },
         body:JSON.stringify({
-        query: repoQuery(user, endCursor)
-      })
+          query: repoQuery(user, data.endCursor)
+        })
     })
-  
+    
     const body = await response.json();
-    setData(prevData => ({...prevData, repositories: body.data.search.edges}))
+    console.log(body)
+    setData(prevData => ({...prevData, 
+                          repositories: [...prevData.repositories, ...body.data.search.edges],
+                          endCursor: body.data.search.pageInfo.endCursor
+                        }))
     setLoading(false)
   }
 
+  useEffect(() => {
+    if (user) { 
+      getRepos()
+    }
+  }, [user])
+
   return (
     <Provider
-      value={{ ...data, getRepos, loading }}
+      value={{ ...data, setUser, setData, getRepos, loading, darkMode, toggleDarkMode }}
     >
       {props.children}
     </Provider>
