@@ -19,9 +19,21 @@ export const repoQuery = (user, endCursor = null) => {
             name
             createdAt 
             description 
-            isArchived
+            isFork
+            forkCount
             isPrivate
             url
+            issues(first:10) {
+              nodes {
+                title
+                bodyText
+              }
+            }
+            languages(first:10) {
+              nodes {
+                name
+              }
+            }
           }
         }
         }
