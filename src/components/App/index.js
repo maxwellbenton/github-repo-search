@@ -4,9 +4,20 @@ import SearchForm from '../SearchForm/';
 import LoadingMessage from '../LoadingMessage/';
 import LoadMore from '../LoadMore/';
 import ResultsContainer from '../ResultsContainer/';
+import DarkModeToggle from '../DarkModeToggle';
 import './App.css';
 
 
+const THEME = {
+  light: {
+    background: '#eee',
+    color: '#000'
+  },
+  dark: {
+    background: '#333',
+    color: '#eee'
+  }
+}
 
 function App() {
 
@@ -24,6 +35,7 @@ function App() {
               <ResultsContainer repositories={data.repositories} />
               <LoadingMessage loading={data.loading}/>
               <LoadMore repositories={data.repositories} getRepos={data.getRepos} />
+              <DarkModeToggle darkMode={data.darkMode} toggleDarkMode={data.toggleDarkMode} />
             </div>)
           }
         </Consumer>
