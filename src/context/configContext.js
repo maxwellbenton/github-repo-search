@@ -1,4 +1,5 @@
 import { createContext, useState,  useEffect } from "react";
+import  { idbKeyval } from '../indexDB/'
 import { repoQuery } from '../graphql/queries'; 
 import { GRAPHQL_DOMAIN } from "../constants";
 const { Provider, Consumer } = createContext();
@@ -46,6 +47,21 @@ const ConfigProvider = (props) => {
     }
   }, [user])
 
+  useEffect(async () => {
+    let storedDarkModeState = await idbKeyval.get('darkmode')
+    if (storedDarkModeState === undefined) {
+      await idbKeyval.set('darkmode', false)
+    }
+    if (typeof storedDarkModeState === 'boolean') {
+      setDarkMode(storedDarkModeState)
+    }
+  }, [])
+
+  useEffect(() => {
+    idbKeyval.set('darkmode', darkMode)
+  }, [darkMode])
+
+console.log(darkMode)
   return (
     <Provider
       value={{ ...data, setUser, setData, getRepos, loading, darkMode, toggleDarkMode }}
