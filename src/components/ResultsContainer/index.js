@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import RepoCard from '../RepoCard/';
 import './ResultsContainer.css'
 
@@ -12,3 +13,8 @@ const ResultsContainer = ({repositories, darkMode}) => {
 }
 
 export default ResultsContainer
+
+ResultsContainer.propTypes = {
+  repositories: PropTypes.array,
+  darkMode: PropTypes.bool
+};

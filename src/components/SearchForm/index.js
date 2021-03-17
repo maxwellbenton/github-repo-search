@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const SearchForm = ({setData, setUser}) => {
 
   function handleSubmit(event) {
@@ -21,4 +23,7 @@ const SearchForm = ({setData, setUser}) => {
 
 export default SearchForm
 
-
+SearchForm.propTypes = {
+  setData: PropTypes.func,
+  setUser: PropTypes.func
+};

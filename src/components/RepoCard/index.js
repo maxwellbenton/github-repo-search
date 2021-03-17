@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { determineTheme2 } from '../../theme';
 import './RepoCard.css';
 
@@ -21,3 +22,8 @@ const RepoCard = ({node, darkMode}) => {
 }
 
 export default RepoCard;
+
+RepoCard.propTypes = {
+  node: PropTypes.object,
+  darkMode: PropTypes.bool
+};
