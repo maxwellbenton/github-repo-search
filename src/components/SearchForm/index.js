@@ -1,21 +1,17 @@
 import PropTypes from 'prop-types';
 
-const SearchForm = ({setData, setUser}) => {
+const SearchForm = ({handleUserSearch}) => {
 
   function handleSubmit(event) {
     event.preventDefault()
-    setData({
-      userInfo: {},
-      repositories: [],
-      endCursor: null
-    })
-    setUser(event.target.username.value)
+    handleUserSearch(event.target.username.value)
+   
     event.target.reset()
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="username" type="text" placeholder="Enter GitHub username"></input>
+      <input id="usernameInput" name="username" type="text" placeholder="Enter GitHub username"></input>
       <input type="submit"></input>
     </form>
   )
@@ -24,6 +20,5 @@ const SearchForm = ({setData, setUser}) => {
 export default SearchForm
 
 SearchForm.propTypes = {
-  setData: PropTypes.func,
-  setUser: PropTypes.func
+  handleUserSearch: PropTypes.func
 };

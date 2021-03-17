@@ -13,10 +13,10 @@ function App() {
   return (
       <ConfigProvider>
         <Consumer>
-          {({darkMode, setData, setUser, repositories, loading, getRepos, toggleDarkMode}) => (
+          {({darkMode, handleUserSearch, repositories, loading, getRepos, toggleDarkMode}) => (
             <div className="App" style={determineTheme(darkMode)}>
               <Title />
-              <SearchForm setData={setData} setUser={setUser}/>
+              <SearchForm handleUserSearch={handleUserSearch}/>
               <ResultsContainer repositories={repositories} darkMode={darkMode} />
               <LoadingMessage loading={loading}/>
               <LoadMore repositories={repositories} getRepos={getRepos} />

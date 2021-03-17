@@ -41,6 +41,17 @@ const ConfigProvider = (props) => {
     setLoading(false)
   }
 
+  const handleUserSearch = (newUser) => {
+    if (newUser !== user) {
+      setData({
+        userInfo: {},
+        repositories: [],
+        endCursor: null
+      })
+      setUser(newUser)
+    }
+  }
+
   useEffect(() => {
     if (user) { 
       getRepos()
@@ -64,7 +75,7 @@ const ConfigProvider = (props) => {
 console.log(darkMode)
   return (
     <Provider
-      value={{ ...data, setUser, setData, getRepos, loading, darkMode, toggleDarkMode }}
+      value={{ ...data, handleUserSearch, getRepos, loading, darkMode, toggleDarkMode }}
     >
       {props.children}
     </Provider>
