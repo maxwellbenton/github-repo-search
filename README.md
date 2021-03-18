@@ -1,4 +1,4 @@
-# GitHub Repository Search!
+# GitHub Repository Search
 
 [Live Demo][demo]
 
@@ -26,10 +26,6 @@ information. [Check out the demo!][demo]
 
 - `"react": "^17.0.1"` - App uses hooks and context
 - `"prop-types": "^15.7.2"` - Typechecks component props
-- `"idb": "^6.0.0"` - [`idb`][idb] is used for interacting with the browser's
-  IndexDB. For this app, `idb` is used for storing persistent data(persists dark
-  mode state over multiple page visits).
-
 ## References
 
 - [GitHub v4 API][github api]
