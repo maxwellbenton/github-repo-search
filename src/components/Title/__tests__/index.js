@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { APP_TITLE } from '../../../constants'
+import { APP_TITLE } from '../../../constants';
 import Title from '../index';
 
 test('renders app title', () => {
