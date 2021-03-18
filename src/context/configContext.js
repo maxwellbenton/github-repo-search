@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { repoQuery } from '../graphql/queries'; 
-import { GRAPHQL_DOMAIN } from "../constants";
+import { GITHUB_TOKEN, GRAPHQL_DOMAIN } from "../constants";
 const { Provider, Consumer } = createContext();
 
 
@@ -25,7 +25,7 @@ const ConfigProvider = (props) => {
         method:'POST',
         headers:{
           'content-type':'application/json',
-          "Authorization": `bearer ${process.env.REACT_APP_GITHUB_PERSONAL_TOKEN}`
+          "Authorization": `bearer ${GITHUB_TOKEN}`
         },
         body:JSON.stringify({
           query: repoQuery(userToQuery, endCursor)
