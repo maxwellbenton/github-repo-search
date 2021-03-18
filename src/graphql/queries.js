@@ -1,3 +1,4 @@
+// same query function used for initial and paginated requests
 export const repoQuery = (user, endCursor = null) => {
   return (`
     query getRepos {
