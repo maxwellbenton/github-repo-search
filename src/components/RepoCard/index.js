@@ -15,11 +15,10 @@ const RepoCard = ({node, darkMode}) => {
         <div>Forks: {node.forkCount}</div>
         {node.isPrivate ? <div>Private</div> : <div>Public</div>}
         <div>Open Issues: {node.issues.nodes.length} </div>
-        
       </section>
     </div>
-  )
-}
+  );
+};
 
 export default RepoCard;
 

@@ -1,5 +1,4 @@
-import {createContext} from 'react'
-import { render, mount, screen, } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import ResultsContainer from '../index';
 
 
@@ -8,5 +7,4 @@ test('renders app ResultsContainer', () => {
     repositories: []
   };
   render(<ResultsContainer {...data} />);
-  
 });

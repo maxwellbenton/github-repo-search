@@ -5,11 +5,11 @@ import LoadingMessage from '../LoadingMessage/';
 import LoadMore from '../LoadMore/';
 import ResultsContainer from '../ResultsContainer/';
 import DarkModeToggle from '../DarkModeToggle';
-import { determineTheme } from '../../theme/index'
+import { determineTheme } from '../../theme/index';
 import './App.css';
 
 
-function App() {
+const App = () => {
   return (
       <ConfigProvider>
         <Consumer>
@@ -26,6 +26,6 @@ function App() {
         </Consumer>
       </ConfigProvider>
   );
-}
+};
 
 export default App;

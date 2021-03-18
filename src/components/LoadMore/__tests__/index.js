@@ -1,6 +1,4 @@
-import {createContext} from 'react'
 import { render, screen, fireEvent } from '@testing-library/react';
-
 import LoadMore from '../index';
 
 
@@ -18,18 +16,18 @@ test('renders LoadMore when repositories are present', () => {
       name: "universal-normalizer",
       url: "https://github.com/maxwellbenton/universal-normalizer"
     }}]
-  }
+  };
 
   render(<LoadMore {...data}/>);
-  const element = screen.findByTestId('moreReposButton')
-  expect(element).not.toBeNull()
+  const element = screen.findByTestId('moreReposButton');
+  expect(element).not.toBeNull();
 });
 
 test('does not render LoadMore when there are zero repositories', () => {
   const data = {
     repositories: []
-  }
+  };
   render(<LoadMore {...data}/>);
-  const button = screen.queryByText('More Repositories')
-  expect(button).toBeNull()
+  const button = screen.queryByText('More Repositories');
+  expect(button).toBeNull();
 });

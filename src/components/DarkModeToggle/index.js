@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import './DarkModeToggle.css'
+import './DarkModeToggle.css';
 
-const DarkModeToggle = ({darkMode, toggleDarkMode}) => <button className="darkModeToggle" onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
-
+const DarkModeToggle = ({darkMode, toggleDarkMode}) => <button className="darkModeToggle" onClick={toggleDarkMode}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>;
 
 export default DarkModeToggle;
 
