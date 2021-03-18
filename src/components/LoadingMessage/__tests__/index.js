@@ -1,19 +1,16 @@
-import { render, mount, shallow, screen, fireEvent } from '@testing-library/react';
-import LoadingMessage from '../index';
+import { render, screen, } from '@testing-library/react';
+import DarkModeToggle from '../index';
 
-
-test('renders a loading message when retrieving data', async () => {
-  const data = {loading: true}
-
-  render(<LoadingMessage {...data}/>);
-  const element = await screen.findByTestId('loading')
+test('displays Dark Mode when in Light Mode', async () => {
+  const data = {darkMode: false}
+  render(<DarkModeToggle {...data}/>);
+  const element = await screen.findByText('Dark Mode');
   expect(element).toBeInTheDocument();
 });
 
-test('does not render a loading message when not loading', () => {
-  const data = {loading: false}
-
-  render(<LoadingMessage {...data}/>);
-  const element = screen.queryByText('Loading')
-  expect(element).toBeNull()
+test('displays Light Mode when in Dark Mode', async () => {
+  const data = {darkMode: true}
+  render(<DarkModeToggle {...data}/>);
+  const element = await screen.findByText('Light Mode');
+  expect(element).toBeInTheDocument();
 });
