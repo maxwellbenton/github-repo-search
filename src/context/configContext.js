@@ -19,7 +19,7 @@ const ConfigProvider = (props) => {
     setDarkMode(preState => !preState);
   };
 
-  const getRepos = async () => {
+  const getRepos = async (userToQuery, endCursor = null) => {
     setLoading(true);
     const response = await fetch(GRAPHQL_DOMAIN, {
         method:'POST',
@@ -28,7 +28,7 @@ const ConfigProvider = (props) => {
           "Authorization": `bearer ${process.env.REACT_APP_GITHUB_PERSONAL_TOKEN}`
         },
         body:JSON.stringify({
-          query: repoQuery(user, data.endCursor)
+          query: repoQuery(userToQuery, endCursor)
         })
     });
     const body = await response.json();
@@ -48,20 +48,19 @@ const ConfigProvider = (props) => {
         endCursor: null
       })
       setUser(newUser)
+      getRepos(newUser)
     }
   };
 
-  // search form sets user, triggering initial repository search
-  useEffect(() => {
-    if (user) { 
-      getRepos()
+  const loadMore = () => {
+    if (user) {
+      getRepos(user)
     }
-  }, [user]);
-
+  }
 
   return (
     <Provider
-      value={{ ...data, handleUserSearch, getRepos, loading, darkMode, toggleDarkMode }}
+      value={{ ...data, handleUserSearch, loadMore, loading, darkMode, toggleDarkMode }}
     >
       {props.children}
     </Provider>

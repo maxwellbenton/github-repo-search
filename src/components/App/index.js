@@ -13,13 +13,13 @@ const App = () => {
   return (
       <ConfigProvider>
         <Consumer>
-          {({darkMode, handleUserSearch, repositories, loading, getRepos, toggleDarkMode}) => (
+          {({darkMode, handleUserSearch, repositories, loading, loadMore, toggleDarkMode}) => (
             <div className="App" style={determineTheme(darkMode)}>
               <Title />
               <SearchForm handleUserSearch={handleUserSearch}/>
               <ResultsContainer repositories={repositories} darkMode={darkMode} />
               <LoadingMessage loading={loading}/>
-              <LoadMore repositories={repositories} getRepos={getRepos} />
+              <LoadMore repositories={repositories} loadMore={loadMore} />
               <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             </div>)
           }
