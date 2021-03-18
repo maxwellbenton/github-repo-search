@@ -26,13 +26,12 @@ information. [Check out the demo!][demo]
 
 - `"react": "^17.0.1"` - App uses hooks and context
 - `"prop-types": "^15.7.2"` - Typechecks component props
+
 ## References
 
 - [GitHub v4 API][github api]
 - [GitHub Personal Access Token][pat]
-- [idb][idb]
 
-[idb]: https://www.npmjs.com/package/idb/v/4.0.1
 [github api]: https://docs.github.com/en/graphql
-[demo]: https://github.com
+[demo]: https://stoic-torvalds-387d43.netlify.app/
 [pat]: https://github.com/settings/tokens
