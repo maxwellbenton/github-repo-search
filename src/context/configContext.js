@@ -7,7 +7,9 @@ const { Provider, Consumer } = createContext();
 // state and GitHub search logic store here in context
 const ConfigProvider = (props) => {
   const [data, setData] = useState({
-    userInfo: {},
+    userInfo: {
+      repositoryCount: Infinity
+    },
     repositories: [],
     endCursor: null
   });
@@ -33,6 +35,9 @@ const ConfigProvider = (props) => {
     });
     const body = await response.json();
     setData(prevData => ({...prevData, 
+                          userInfo: {
+                            repositoryCount: body.data.search.repositoryCount
+                          },
                           repositories: [...prevData.repositories, ...body.data.search.edges],
                           endCursor: body.data.search.pageInfo.endCursor
                         }));
@@ -48,13 +53,13 @@ const ConfigProvider = (props) => {
         endCursor: null
       })
       setUser(newUser)
-      getRepos(newUser)
+      getRepos(newUser, data.endCursor)
     }
   };
 
   const loadMore = () => {
-    if (user) {
-      getRepos(user)
+    if (user && data.userInfo.repositoryCount > data.repositories.length) {
+      getRepos(user, data.endCursor)
     }
   }
 
