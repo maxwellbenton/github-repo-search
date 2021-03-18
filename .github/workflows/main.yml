@@ -25,9 +25,7 @@ jobs:
         run: |
           npm install
           npm run build
-        env:
-          REACT_APP_GITHUB_PERSONAL_TOKEN: ${{ secrets.REACT_APP_GITHUB_PERSONAL_TOKEN }}
-
+       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
