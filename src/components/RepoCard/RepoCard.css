@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   width: 90%;
-  height: 10em;
+  min-height: 10em;
   box-shadow: 5px 5px 5px #aaa;
   margin: auto;
 }
@@ -25,7 +25,6 @@
 
 .languages {
   text-align: left;
-  
 }
 
 .right {
@@ -56,4 +55,10 @@ a:link {
 
 a:visited {
   color: gray;
+}
+
+@media (max-width: 600px) {
+  .right {
+    display: none;
+  }
 }
