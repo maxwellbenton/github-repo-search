@@ -1,4 +1,4 @@
-import { createContext, useState,  useEffect } from "react";
+import { createContext, useState } from "react";
 import { repoQuery } from '../graphql/queries'; 
 import { GRAPHQL_DOMAIN } from "../constants";
 const { Provider, Consumer } = createContext();
