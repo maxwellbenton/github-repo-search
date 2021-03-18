@@ -33,5 +33,5 @@ information. [Check out the demo!][demo]
 - [GitHub Personal Access Token][pat]
 
 [github api]: https://docs.github.com/en/graphql
-[demo]: https://stoic-torvalds-387d43.netlify.app/
+[demo]: https://pensive-elion-cf9a56.netlify.app/
 [pat]: https://github.com/settings/tokens
