@@ -1,5 +1,4 @@
 import { createContext, useState,  useEffect } from "react";
-import  { idbKeyval } from '../indexDB/'
 import { repoQuery } from '../graphql/queries'; 
 import { GRAPHQL_DOMAIN } from "../constants";
 const { Provider, Consumer } = createContext();
@@ -33,7 +32,6 @@ const ConfigProvider = (props) => {
     })
     
     const body = await response.json();
-    console.log(body)
     setData(prevData => ({...prevData, 
                           repositories: [...prevData.repositories, ...body.data.search.edges],
                           endCursor: body.data.search.pageInfo.endCursor
@@ -58,21 +56,6 @@ const ConfigProvider = (props) => {
     }
   }, [user])
 
-  useEffect(async () => {
-    let storedDarkModeState = await idbKeyval.get('darkmode')
-    if (storedDarkModeState === undefined) {
-      await idbKeyval.set('darkmode', false)
-    }
-    if (typeof storedDarkModeState === 'boolean') {
-      setDarkMode(storedDarkModeState)
-    }
-  }, [])
-
-  useEffect(() => {
-    idbKeyval.set('darkmode', darkMode)
-  }, [darkMode])
-
-console.log(darkMode)
   return (
     <Provider
       value={{ ...data, handleUserSearch, getRepos, loading, darkMode, toggleDarkMode }}
